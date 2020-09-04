@@ -12,4 +12,31 @@ router.get('/', (req, res) => {
         })
 })
 
+router.post('/', (req, res) => {
+    projDb.insert(req.body)
+        .then((resp) => {
+            res.status(201).json({resp})
+        })
+        .catch((err) => {
+            res.status(500).json({error: err})
+        })
+})
+
+router.put('/:id', (req, res) => {
+    projDb.update(req.params.id, req.body)
+        .then((resp) => {
+            res.status(200).json({resp})
+        })
+        .catch((err) => {
+            res.status(500).json({error: err})
+        })
+})
+
+router.delete('/:id', (req, res) => {
+    projDb.remove(req.params.id)
+        .then(resp => {
+            res.status(200).json({resp})
+        })
+})
+
 module.exports = router
