@@ -32,7 +32,7 @@ router.put('/:id', validateProjectID(), (req, res) => {
         })
 })
 
-router.delete('/:id', (req, res) => {
+router.delete('/:id', validateProjectID(), (req, res) => {
     projDb.remove(req.params.id)
         .then(resp => {
             res.status(200).json({ resp })
